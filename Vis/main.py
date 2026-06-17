@@ -1,11 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-from google.colab import files
+import os
 
-# Carregando os dados
-deaths_df = pd.read_csv('/content/Cumulative Count of COVID-19 Deaths in Brazil.csv')
-vaccines_df = pd.read_csv('/content/Total COVID-19 Vaccines Administered in Brazil.csv')
+deaths_df = pd.read_csv('Cumulative Count of COVID-19 Deaths in Brazil.csv')
+vaccines_df = pd.read_csv('Total COVID-19 Vaccines Administered in Brazil.csv')
 
 def process_covid_data_fixed(df):
     date_col = 'Variable observation date'
@@ -51,4 +50,11 @@ lines1, labels1 = ax1.get_legend_handles_labels()
 lines2, labels2 = ax2.get_legend_handles_labels()
 ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
 
+# ALTERAÇÃO 2: Salvar a figura em vez de exibir (ou exibir)
 fig.tight_layout()
+
+# Opção 1: Salvar como imagem
+plt.savefig('covid_analysis.png', dpi=300, bbox_inches='tight')
+
+# Opção 2: Mostrar o gráfico (descomente a linha abaixo)
+# plt.show()
